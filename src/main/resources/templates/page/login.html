@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>ログイン</title>
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1-1/webjars-requirejs.js}"></script>
+<link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet" />
+
+</head>
+<body>
+  <div class="wrap">
+    <!-- ログインが失敗した時のメッセージ -->
+    <div class="alert alert-danger" role="alert" th:if="${msg != null}">
+      <p th:text="${msg}">
+    </div>
+
+    <main class="bg-gray-light container">
+      <form action="#"th:action="@{/form/login}" th:object="${LoginForm}" method="post">
+        <div class="text-center display-1">
+          <label>メニュー</label>
+        </div>
+        <div class="container text-center bg-white col-lg-4">
+          <img class="logoLogin text-center"/>
+          <div class="spaceheight">
+            <span>ユーザーID</span>
+          </div>
+          <input type="text" th:field="*{id}" class="form-control" value="test">
+          <div class="spaceheight">
+            <span>パスワード</span>
+          </div>
+          <input type="password" th:field="*{password}" class="form-control" value="test">
+          <div class="pt10">
+            <div class="push-btn">
+              <input id="loginButton" type="submit" class="btn btn-success" value="ログイン">
+            </div>
+          </div>
+        </div>
+      </form>
+    </main>
+  </div>
+</body>
+</html>

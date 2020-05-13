@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: @db.driver@
+    url: @jdbc.log4dbc.prefix@@datasource.url@
+    username: @datasource.username@
+    password: @datasource.password@
+  jooq:
+    sql-dialect:
+      Postgres
