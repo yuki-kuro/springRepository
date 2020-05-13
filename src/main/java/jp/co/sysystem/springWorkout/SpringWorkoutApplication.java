@@ -12,9 +12,6 @@ import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import jp.co.sysystem.springWorkout.config.security.SessionExpiredDetectingLoginUrlAuthenticationEntryPoint;
-import jp.co.sysystem.springWorkout.web.controller.page.LoginController;
-
 
 @SpringBootApplication
 public class SpringWorkoutApplication extends SpringBootServletInitializer implements WebMvcConfigurer {
@@ -69,14 +66,5 @@ public class SpringWorkoutApplication extends SpringBootServletInitializer imple
   @Bean
   public ServletContextInitializer servletContextInitializer() {
     return servletContext -> servletContext.getSessionCookieConfig().setName(COOKIE_NAME);
-  }
-
-  /**
-   * セッションタイムアウト発生時のカスタムクラス
-   * @return
-   */
-  @Bean
-  SessionExpiredDetectingLoginUrlAuthenticationEntryPoint authenticationEntryPoint() {
-    return new SessionExpiredDetectingLoginUrlAuthenticationEntryPoint(LoginController.LOGIN_FORM_URL);
   }
 }

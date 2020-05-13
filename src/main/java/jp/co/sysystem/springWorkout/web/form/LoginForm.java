@@ -1,5 +1,7 @@
 package jp.co.sysystem.springWorkout.web.form;
 
+import javax.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,8 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LoginForm {
 
-	private String id;
+  @NotBlank(message = "{validate.notblank}")
+  private String id;
 
-	private String password;
+  private String password;
 
 }

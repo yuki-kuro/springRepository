@@ -8,18 +8,15 @@
 </head>
 <body>
   <div class="wrap">
-    <!-- ログインが失敗した時のメッセージ -->
+    <main class="bg-gray-light container">
     <div class="alert alert-danger" role="alert" th:if="${msg != null}">
       <p th:text="${msg}">
     </div>
-
-    <main class="bg-gray-light container">
-      <form action="#"th:action="@{/form/login}" th:object="${LoginForm}" method="post">
+      <form action="#"th:action="@{/login}" th:object="${LoginForm}" method="post">
         <div class="text-center display-1">
           <label>メニュー</label>
         </div>
         <div class="container text-center bg-white col-lg-4">
-          <img class="logoLogin text-center"/>
           <div class="spaceheight">
             <span>ユーザーID</span>
           </div>
