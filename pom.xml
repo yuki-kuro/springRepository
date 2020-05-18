@@ -136,7 +136,7 @@
         <artifactId>jooq-codegen-maven</artifactId>
         <executions>
           <execution>
-            <id>generate-oracle</id>
+            <id>generate-entity</id>
             <phase>generate-sources</phase>
             <goals>
               <goal>generate</goal>
