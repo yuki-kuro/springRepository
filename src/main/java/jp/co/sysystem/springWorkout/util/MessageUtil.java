@@ -16,6 +16,17 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 
+/**
+ * メッセージリソースから指定されたメッセージを取得する。<br>
+ * メッセージおよび、フィールド名をリソースファイルへ定義する必要がある。
+ * <ul>
+ * <li>message.properties</li>
+ * メッセージを定義する
+ * <li>form.yaml</li>
+ * 各formのフィールド名に対して名称を設定する
+ * </ul>
+ * @version 1.0.0 : 2020/05/13 新規作成
+ */
 @Component
 public class MessageUtil {
 
@@ -64,7 +75,7 @@ public class MessageUtil {
     }
 
     if (!ArrayUtils.isEmpty(args)) {
-      msgArgs = ArrayUtils.addAll(msgArgs, args);
+      msgArgs = ArrayUtils.addAll(msgArgs, (Object [])args);
     }
     return messageSource.getMessage(
         key,

@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * AOP処理の定義クラス
+ * @version 1.0.0 2020/05/13 新規作成
  */
 @Aspect
 @Component

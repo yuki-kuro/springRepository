@@ -9,6 +9,12 @@ import org.springframework.stereotype.Component;
 import jp.co.sysystem.springWorkout.domain.table.User;
 import lombok.NonNull;
 
+/**
+ * JOOQを利用したクエリを定義するクラス<br>
+ * O/Rマッパーを利用したタイプセーフなクエリ実装を目指す。
+ * @see <a href="https://www.jooq.org/">jooq.org</a>
+ * @version 1.0.0 2020/05/13 新規作成
+ */
 @Component
 public class LoginUserJooqRepository {
   @Autowired

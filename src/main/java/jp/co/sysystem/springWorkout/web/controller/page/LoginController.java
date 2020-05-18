@@ -17,6 +17,10 @@ import jp.co.sysystem.springWorkout.util.MessageUtil;
 import jp.co.sysystem.springWorkout.web.form.LoginForm;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * ログイン画面コントローラー
+ * @version 1.0.0 2020/05/13 新規作成
+ */
 @Controller
 @EnableAutoConfiguration
 @Slf4j
@@ -48,25 +52,38 @@ public class LoginController {
     return LOGIN_PAGE;
   }
 
+  /**
+   * ログイン処理<br>
+   * ログイン成功である場合、メニュー画面へリダイレクトする。
+   * @param form
+   * @param bindingResult
+   * @param model
+   * @return
+   */
   @RequestMapping(value = LOGIN_PROCESS_URL, method = RequestMethod.POST)
   public String processLogin(
       @Validated @ModelAttribute LoginForm form,
       BindingResult bindingResult,
       Model model) {
 
+    // BeanValidationの結果確認
     if (bindingResult.hasErrors()) {
-      // TODO: ログインフォームからの入力値確認結果にエラーがある場合
-      // TODO: エラーメッセージを画面に表示する
-      // TODO: ログインに失敗したら、もう一度ログイン画面
+      // TODO: ログインフォームからの入力値確認結果にエラーがある場合の処理
+
+      // エラーメッセージをリソースファイルから取得
       String msg = msgutil.getMessage("login.failure");
-      log.info(msg);
+      log.debug(msg);
+      // エラーメッセージを画面に表示する
       model.addAttribute("msg", msg);
+
+      // ログインに失敗したら、もう一度ログイン画面
       // ログインフォームを格納
       model.addAttribute("LoginForm", form);
       return LOGIN_PAGE;
     }
 
-    return "redirect:" + MenuController.MENU_PAGE_URL;
+    // TODO: リダイレクトする様に処理を変更する
+    return "遷移先画面の指定";
   }
 
   /**
@@ -78,6 +95,7 @@ public class LoginController {
   public String logout(Model model) {
     // 既存セッションを削除
     session.invalidate();
+    // 遷移先のログイン画面で使用する空のForm
     model.addAttribute("LoginForm", new LoginForm());
     return LOGIN_PAGE;
   }
