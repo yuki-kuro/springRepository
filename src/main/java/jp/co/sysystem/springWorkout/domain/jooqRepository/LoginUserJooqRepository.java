@@ -25,7 +25,7 @@ public class LoginUserJooqRepository {
    * @param loginId
    * @return
    */
-  public User findByIdWithActive(@NonNull String loginId) {
+  public User findById(@NonNull String loginId) {
     User result = dsl.select()
         .from(USER)
         .where(
@@ -39,7 +39,7 @@ public class LoginUserJooqRepository {
    * @param loginId
    * @return
    */
-  public User findByIdWithActiveAndForUpdate(@NonNull String loginId) {
+  public User findByIdForUpdate(@NonNull String loginId) {
     User result = dsl.select()
         .from(USER)
         .where(

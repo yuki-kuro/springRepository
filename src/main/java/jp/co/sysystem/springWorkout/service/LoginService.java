@@ -55,7 +55,7 @@ public class LoginService {
     // log.error    ←　errorレベルのログ出力
 
     // ログインIDでユーザー情報を取得
-    User u = jrep.findByIdWithActive(loginId);
+    User u = jrep.findById(loginId);
     if (null != u) {
       // TODO: ユーザーが取得できた場合、パスワードの検証
     } else {
