@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import jp.co.sysystem.springWorkout.service.LoginService;
 import jp.co.sysystem.springWorkout.util.MessageUtil;
 import jp.co.sysystem.springWorkout.web.form.LoginForm;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,9 @@ public class LoginController {
 
   @Autowired
   public MessageUtil msgutil;
+
+  @Autowired
+  public LoginService login;
 
   /// URL定義
   public static final String LOGIN_FORM_URL = "/";
@@ -80,6 +84,11 @@ public class LoginController {
       // ログインフォームを格納
       model.addAttribute("LoginForm", form);
       return LOGIN_PAGE;
+    }
+
+    // ログインユーザー情報の正当性判定
+    if (null == login.checkLoginUser(form.getId(), form.getPassword())) {
+      // TODO: エラー処理
     }
 
     // TODO: リダイレクトする様に処理を変更する
