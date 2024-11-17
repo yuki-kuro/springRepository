@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- scripts import -->
+  <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.bundle.min.js}"></script>
+  <!-- style import -->
+  <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet" />
+  <link th:href="@{/css/login.css}" rel="stylesheet" />
+  <title>新規登録確認画面</title>
+  <!--  パスワードをマスキングして表示するスクリプト-->
+  <script>
+    function maskPassword(password) {
+      return password.replace(/./g, '●');
+    }
+    window.onload = function () {
+      var passwordElement = document.getElementById('password');
+      passwordElement.textContent = maskPassword(passwordElement.textContent);
+    }
+  </script>
+  <script>
+    function check() {
+        if (window.confirm('登録しますか?')) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+  </script>
+</head>
+
+<body>
+  <div class="wrap">
+    <main class="bg-gray-light container">
+            <div class="alert alert-danger" role="alert" th:if="${msg != null}">
+        <p th:text="${msg}">
+      </div>
+      <div class="card card-container">
+        <div class="text-center bg-white">
+          <h1>入力確認します</h1>
+          <table>
+            <tr>
+              <td>ID:</td>
+              <td th:text="${registerForm.registerId}"></td>
+            </tr>
+            <tr>
+              <td>パスワード:</td>
+              <!--                  JavaScriptでマスキングしている-->
+              <td id="password" th:text="${registerForm.registerPassword}"></td>
+            </tr>
+            <tr>
+              <td>名前:</td>
+              <td th:text="${registerForm.registerName}"></td>
+            </tr>
+            <tr>
+              <td>ｶﾅ:</td>
+              <td th:text="${registerForm.registerKana}"></td>
+            </tr>
+            <tr>
+              <td>生年月日:</td>
+              <td th:text="${registerForm.registerBirthday}"></td>
+            </tr>
+            <tr>
+              <td>委員会:</td>
+              <td th:text="${registerForm.registerClub}"></td>
+            </tr>
+          </table>
+
+          <form action="#" th:action="@{/reg/yes}" th:object="${registerForm}" method="post" onSubmit="return check()">
+            <!--登録ボタン-->
+            <div class="pt10">
+              <div class="push-btn">
+                <button id="registerButton" type="submit" class="btn btn-success">登録します</button>
+              </div>
+            </div>
+          </form>
+
+          <form action="#" th:action="@{/reg/check}" method="get">
+            <!--戻るボタン-->
+            <div class="pt10">
+              <div class="push-btn">
+                <button id="returnButton" type="submit" class="btn btn-success">戻る</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+    </main>
+  </div>
+
+</body>
+
+</html>

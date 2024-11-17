@@ -1,0 +1,99 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- scripts import -->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.bundle.min.js}"></script>
+<!-- style import -->
+<link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet" />
+<link th:href="@{/css/delete.css}" rel="stylesheet" />
+
+<title>削除確認画面</title>
+
+</head>
+<body>
+    <main class="container">
+        <!-- エラーメッセージ表示部分 -->
+        <div class="container">
+            <div class="alert alert-danger" role="alert" th:if="${msg != null}">
+                <p th:text="${msg}"></p>
+            </div>
+        </div>
+        <div class="card card-container">
+            <h1>削除確認画面</h1>
+            <form action="#" class="form-horizontal" th:action="@{/detele_exe}"
+                th:object="${resultTable}" method="post" id="deleteUserForm"
+                data-target="#modalForm">
+
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>ユーザーID :</th>
+                            <td th:text="*{id}"></td>
+                        </tr>
+
+                        <tr>
+                            <th>名前 :</th>
+                            <td th:text="*{name}"></td>
+                        </tr>
+                        <tr>
+                            <th>カナ :</th>
+                            <td th:text="*{kana}"></td>
+                        </tr>
+
+                        <tr>
+                            <th>生年月日 :</th>
+                            <td th:text="*{{birth}}"></td>
+                        </tr>
+
+                        <tr>
+                            <th>委員会 :</th>
+                            <td th:text="*{club}"></td>
+                        </tr>
+                    </thead>
+                </table>
+
+                <input type="hidden" name="id" th:value="*{id}"> <input
+                    type="hidden" name="name" th:value="*{name}"> <input
+                    type="hidden" name="kana" th:value="*{kana}"> <input
+                    type="hidden" name="birth" th:value="*{{birth}}"> <input
+                    type="hidden" name="club" th:value="*{club}">
+
+                <!-- 確認ダイアログ本体(Bootstrap) -->
+                <div class="modal fade" id="modal1" tabindex="-1" role="dialog"
+                    aria-labelledby="label1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-sm"
+                        role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="label1">削除確認</h5>
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <span th:text="#{question.delete}">メッセージ本文</span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">はい</button>
+                                <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">いいえ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- 確認ダイアログ起動ボタン(Bootstrap) -->
+            <div class="button-area text-right">
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                    data-target="#modal1">削除</button>
+                <button type="button" onclick="location.href='/searchPage'"
+                    class="btn btn-secondary">戻る</button>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

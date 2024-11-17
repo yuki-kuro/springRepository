@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- scripts import -->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.bundle.min.js}"></script>
+<!-- style import -->
+<link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet" />
+<link th:href="@{/css/error.css}" rel="stylesheet" />
+<title>エラー画面</title>
+</head>
+<body>
+<main class="container">
+<h1>Something went wrong! </h1>
+<h2>Our Engineers are on it</h2>
+<h3 th:text="'timestamp: ' + ${timestamp}"></h3>
+<h3 th:text="'status: ' + ${status}"></h3>
+<h3 th:text="'error: ' + ${error}"></h3>
+<h3 th:text="'message: ' + ${errmessage}"></h3>
+<h3 th:text="'path: ' + ${path}"></h3>
+<button type="button" onclick="location.href='/'" class="btn btn-secondary">戻る</button>
+</main>
+</body>
+</html>

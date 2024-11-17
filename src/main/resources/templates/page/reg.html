@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- scripts import -->
+  <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.bundle.min.js}"></script>
+  <!-- style import -->
+  <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet" />
+  <link th:href="@{/css/login.css}" rel="stylesheet" />
+
+  <title>新規登録入力画面</title>
+
+</head>
+
+<body>
+  <div class="wrap">
+    <main class="bg-gray-light container">
+      <div class="alert alert-danger" role="alert" th:if="${msg != null}">
+        <p th:text="${msg}">
+      </div>
+      <div class="card card-container">
+        <br><br>
+        <h1>新規IDを作成します</h1>
+        <form action="#" th:action="@{/reg/confirm}" th:object="${registerForm}" method="post">
+          <form action="#" th:action="@{/reg/check}" th:object="${registerForm}" method="post">
+            <div class="text-center bg-white">
+
+              <!-- IDフォーム -->
+              <div class="spaceheight">
+                <span>ID :</span>
+              </div>
+              <input type="text" th:field="*{registerId}" class="form-control" value="test" th:errorclass="is-invalid"
+                required autofocus>
+              <div th:if="${#fields.hasErrors('registerId')}" th:errors="*{registerId}" class="invalid-feedback"></div>
+
+              <!--ID確認ボタン-->
+              <div class="pt10">
+                <div class="push-btn">
+                  <button id="idCheckButton" type="submit" class="btn btn-success">IDが使用できるか確認</button>
+                </div>
+              </div>
+          </form>
+
+          <!-- パスワードフォーム -->
+          <div class="spaceheight">
+            <span>パスワード :</span>
+          </div>
+          <input type="password" th:field="*{registerPassword}" class="form-control" value="test"
+            th:errorclass="is-invalid">
+          <div th:if="${#fields.hasErrors('registerPassword')}" th:errors="*{registerPassword}"
+            class="invalid-feedback"></div>
+
+          <!-- パスワード再入力フォーム -->
+          <div class="spaceheight">
+            <span>パスワード再入力 :</span>
+          </div>
+          <input type="password" th:field="*{reenterPassword}" class="form-control" value="test"
+            th:errorclass="is-invalid">
+          <div th:if="${#fields.hasErrors('reenterPassword')}" th:errors="*{reenterPassword}" class="invalid-feedback">
+          </div>
+
+          <!-- 名前フォーム -->
+          <div class="spaceheight">
+            <span>名前 :</span>
+          </div>
+          <input type="text" th:field="*{registerName}" class="form-control" value="test" th:errorclass="is-invalid">
+          <div th:if="${#fields.hasErrors('registerName')}" th:errors="*{registerName}" class="invalid-feedback"></div>
+
+          <!-- カナフォーム -->
+          <div class="spaceheight">
+            <span>カナ :</span>
+          </div>
+          <input type="text" th:field="*{registerKana}" class="form-control" value="test" th:errorclass="is-invalid">
+          <div th:if="${#fields.hasErrors('registerKana')}" th:errors="*{registerKana}" class="invalid-feedback"></div>
+
+          <!-- 生年月日フォーム -->
+          <div class="spaceheight">
+            <span>生年月日(yyyy/mm/dd) :</span>
+          </div>
+          <input type="text" th:field="*{registerBirthday}" class="form-control" value="test"
+            th:errorclass="is-invalid">
+          <div th:if="${#fields.hasErrors('registerBirthday')}" th:errors="*{registerBirthday}"
+            class="invalid-feedback"></div>
+
+          <!-- 委員会フォーム -->
+          <div class="spaceheight">
+            <span>委員会 :</span>
+          </div>
+          <input type="text" th:field="*{registerClub}" class="form-control" value="test" th:errorclass="is-invalid">
+          <div th:if="${#fields.hasErrors('registerClub')}" th:errors="*{registerClub}" class="invalid-feedback"></div>
+
+          <!--登録ボタン-->
+          <div class="pt10">
+            <div class="push-btn">
+              <button id="registerButton" type="submit" class="btn btn-success">登録します</button>
+            </div>
+          </div>
+
+
+        </form>
+        <form action="#"th:action="@{/search}" method="get">
+          <!--戻るボタン-->
+          <div class="pt10">
+            <div class="push-btn">
+              <button id="returnButton" type="submit" class="btn btn-success">戻る</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </main>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- scripts import -->
+<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/js/add_user.js}" type="text/javascript"></script>
+<!-- style import -->
+<link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}"
+  rel="stylesheet" />
+<link th:href="@{/css/add_user.css}" rel="stylesheet" />
+
+<!-- TODO: bootを使用する -->
+
+<title>新規登録入力画面</title>
+</head>
+<body>
+
+  <main class="container">
+    <div class="alert alert-success" role="alert" th:if="${smsg != null}">
+      <p th:text="${smsg}">
+    </div>
+    <div class="alert alert-danger" role="alert" th:if="${msg != null}">
+      <p th:text="${msg}">
+    </div>
+    <div class="card card-container">
+      <h1>新規IDを作成します</h1>
+      <!-- 新規登録入力フォーム -->
+      <form action="#" th:action="@{/addUser}" th:object="${addUserForm}"
+        method="post" id="addUserbtn">
+        <div class="form-group row">
+
+          <label class="col-sm-3">ID :</label>
+          <div class="col-sm-9">
+            <input type="text" th:field="*{id}" class="form-control"
+              th:errorclass="is-invalid" maxlength="5"autocomplete="off" required>
+            <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}"
+              class="invalid-feedback"></div>
+          </div>
+
+        </div>
+        <div class="form-group row">
+          <!-- IDを確認する -->
+          <div class="col-sm-3"></div>
+          <div class="col-sm-9">
+            <button id="checkId" type="submit" class="btn btn-primary"
+              name="check">IDが使用できるか確認</button>
+          </div>
+        </div>
+        <div class="form-group row">
+
+          <label class="col-sm-3">パスワード :</label>
+          <div class="col-sm-9">
+            <input id="passwordInput" type="password" th:field="*{password}"
+              class="form-control" th:errorclass="is-invalid" maxlength="8"autocomplete="off"
+              required>
+            <!-- フィールドエラー表示 -->
+            <div th:if="${#fields.hasErrors('password')}"
+              th:errors="*{password}" class="invalid-feedback"></div>
+          </div>
+
+        </div>
+        <div class="form-group row">
+
+          <label class="col-sm-3">パスワード再入力 :</label>
+          <div class="col-sm-9">
+            <input id="rePasswordInput" type="password"
+              th:field="*{rePassword}" class="form-control"
+              th:errorclass="is-invalid" maxlength="8"autocomplete="off" required>
+            <!-- フィールドエラー表示 -->
+            <div th:if="${#fields.hasErrors('rePassword')}"
+              th:errors="*{rePassword}" class="invalid-feedback"></div>
+          </div>
+
+        </div>
+        <div class="form-group row">
+
+          <label class="col-sm-3">名前 :</label>
+          <div class="col-sm-9">
+            <input id="nameInput" type="text" th:field="*{name}"
+              class="form-control" th:errorclass="is-invalid" maxlength="40"autocomplete="off"
+              required>
+            <!-- フィールドエラー表示 -->
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+              class="invalid-feedback"></div>
+          </div>
+
+        </div>
+        <div class="form-group row">
+
+          <label class="col-sm-3">カナ :</label>
+          <div class="col-sm-9">
+            <input id="kanaInput" type="text" th:field="*{kana}"
+              class="form-control" th:errorclass="is-invalid" maxlength="40"autocomplete="off"
+              required>
+            <!-- フィールドエラー表示 -->
+            <div th:if="${#fields.hasErrors('kana')}" th:errors="*{kana}"
+              class="invalid-feedback"></div>
+          </div>
+
+        </div>
+        <div class="form-group row">
+
+          <label class="col-sm-3">生年月日 (yyyy/mm/dd) :</label>
+          <div class="col-sm-9">
+            <input id="birthInput" type="text" th:field="*{{birth}}"
+              class="form-control" th:errorclass="is-invalid"autocomplete="off" required>
+            <!-- フィールドエラー表示 -->
+            <div th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}"
+              class="invalid-feedback"></div>
+          </div>
+
+        </div>
+        <div class="form-group row">
+
+          <label class="col-sm-3">委員会 :</label>
+          <div class="col-sm-9">
+            <input type="text" th:field="*{club}" class="form-control"
+              th:errorclass="is-invalid" maxlength="40"autocomplete="off">
+            <!-- フィールドエラー表示 -->
+            <div th:if="${#fields.hasErrors('club')}" th:errors="*{club}"
+              class="invalid-feedback"></div>
+          </div>
+
+        </div>
+        <div class="button-area text-right">
+          <button id="register" type="submit" class="btn btn-primary">登録します</button>
+          <button type="button" onclick="location.href='/searchPage'"
+            class="btn btn-secondary">戻る</button>
+        </div>
+      </form>
+    </div>
+
+  </main>
+</body>
+</html>
