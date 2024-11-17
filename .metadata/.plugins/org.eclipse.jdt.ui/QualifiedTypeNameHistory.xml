@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="jp.co.sysystem.springWorkout.domain.table.User"/>
+    <fullyQualifiedTypeName name="jp.co.sysystem.springWorkout.domain.table.Userdetail"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+    <fullyQualifiedTypeName name="jp.co.sysystem.springWorkout.domain.jooqObject.tables.User"/>
+    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.SessionAttributes"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="java.text.ParseException"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="org.jooq.Condition"/>
+    <fullyQualifiedTypeName name="org.apache.tomcat.jni.User"/>
+    <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="jp.co.sysystem.springWorkout.service.SearchService"/>
+</qualifiedTypeNameHistroy>

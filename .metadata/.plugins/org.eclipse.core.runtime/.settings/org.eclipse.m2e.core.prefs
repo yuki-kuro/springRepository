@@ -1,0 +1,8 @@
+eclipse.m2.autoUpdateProjects=true
+eclipse.m2.defaultPomEditorPage=true
+eclipse.m2.defaultRuntime=apache-maven-3.5.3
+eclipse.m2.downloadSources=true
+eclipse.m2.runtimes=apache-maven-3.5.3
+eclipse.m2.runtimesNodes/apache-maven-3.5.3/location=C\:\\apache-maven-3.5.3
+eclipse.m2.runtimesNodes/apache-maven-3.5.3/type=EXTERNAL
+eclipse.preferences.version=1

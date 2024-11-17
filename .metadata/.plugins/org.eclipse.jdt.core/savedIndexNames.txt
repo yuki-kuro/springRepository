@@ -1,0 +1,5 @@
+INDEX VERSION 1.134+C:\pleiades\2023-12\spring\.metadata\.plugins\org.eclipse.jdt.core
+3520410290.index
+3204552920.index
+3941534007.index
+1865797976.index
