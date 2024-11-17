@@ -1,0 +1,109 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- scripts import -->
+  <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+  <script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.bundle.min.js}"></script>
+  <!-- style import -->
+  <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet" />
+  <link th:href="@{/css/search.css}" rel="stylesheet" />
+
+  <title>検索画面</title>
+
+</head>
+
+<body>
+  <div th:object="${loginForm}">
+    <label>ユーザーID : </label>
+    <span th:text="*{id}"></span>
+    <div class="pt10">
+      <div class="push-btn">
+        <button id="logoutButton" type="submit" class="btn btn-success">ログアウト</button>
+      </div>
+    </div>
+  </div>
+  
+  <h1>社員情報検索</h1>
+  <p class="tytle">※前方一致で検索します</p>
+  <div class="wrap">
+    <main class="bg-gray-light container">
+
+      <!--エラー表示-->
+      <div class="alert alert-danger" role="alert" th:if="${msg != null}">
+        <p th:text="${msg}">
+      </div>
+
+      <div class="card card-container">
+        <form action="#" th:action="@{/search}" th:object="${searchForm}" method="post">
+          <div class="text-center bg-white">
+
+            <!--IDフォーム-->
+            <div class="spaceheight">
+              <span>ID</span>
+            </div>
+            <input type="text" th:field="*{searchId}" class="form-control" value="test" th:errorclass="is-invalid"
+              autofocus>
+            <div th:if="${#fields.hasErrors('searchId')}" th:errors="*{searchId}" class="invalid-feedback"></div>
+
+            <!--名前フォーム-->
+            <div class="spaceheight">
+              <span>名前</span>
+            </div>
+            <input type="text" th:field="*{searchName}" class="form-control" value="test" th:errorclass="is-invalid">
+            <div th:if="${#fields.hasErrors('searchName')}" th:errors="*{searchName}" class="invalid-feedback"></div>
+
+            <!--ｶﾅフォーム-->
+            <div class="spaceheight">
+              <span>ｶﾅ</span>
+            </div>
+            <input type="text" th:field="*{searchKana}" class="form-control" value="test" th:errorclass="is-invalid">
+            <div th:if="${#fields.hasErrors('searchKana')}" th:errors="*{searchKana}" class="invalid-feedback"></div>
+
+            <!--ボタン-->
+            <div class="pt10">
+              <div class="push-btn">
+                <button id="searchButton" type="submit" class="btn btn-outline-primary">検索</button>
+                <button id="registerButton" type="submit" class="btn btn-outline-primary"
+                  formaction="@{/reg}">新規登録</button>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+      
+      <!--検索結果-->
+      <div class="container" style="background-color : white">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>ID</td>
+              <td>名前</td>
+              <td>ｶﾅ</td>
+              <td>生年月日</td>
+              <td>委員会</td>
+              <td>操作</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="user : ${searchResults}">
+              <td th:text="${user.Id}"></td>
+              <td th:text="${user.Name}"></td>
+              <td th:text="${user.Kana}"></td>
+              <td th:text="${user.Birth}"></td>
+              <td th:text="${user.Club}"></td>
+              <td>
+                <button type="submit" class="btn btn-outline-secondary">更新</button>
+                <button type="submit" class="btn btn-outline-warning"th:formaction="@{/delete}">削除</button>
+              </td>
+          </tbody>
+        </table>
+      </div>
+      
+    </main>
+
+
+  </div>
+</body>
+
+</html>

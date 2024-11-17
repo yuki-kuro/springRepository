@@ -1,0 +1,79 @@
+spring:
+  datasource:
+    driver-class-name: @db.driver@
+    url: @jdbc.log4dbc.prefix@@datasource.url@
+    username: @datasource.username@
+    password: @datasource.password@
+    # hikariCP設定
+    hikari:
+      # コネクションプール名
+      # 単一サーバーで複数のシステムを稼働させる場合、この名称が重複しているとコネクションを確保できなくなる
+      poolName: springWorkout
+      registerMbeans: true
+      # ここで設定した時間（ms）以上、プログラムでコネクションを利用し続けるとstacktraceが出力される(接続は維持される)
+      leakDetectionThreshold: 3000
+      # connection Poolで維持する最小限のconnection数を指定します。
+      minimumIdle: 5
+      # connection Poolで使用する最大のconnection数を指定します。
+      maximumPoolSize: 10
+      # connectionが終了されたり、poolが返却される時、connectionに属しているtransactionをcommitするかどうかを決めます。
+      autoCommit: false
+      # この設定はdatabaseが支援してくれないとreadOnlyではない状態でopenされるため、支援databaseリストを確認する必要があります。
+      readOnly: false
+      # java.sql.Connectionに指定されたTransaction Isolationを指定します。
+      # TRANSACTION_NONE, TRANSACTION_READ_UNCOMMITTED, TRANSACTION_READ_COMMITTED, TRANSACTION_REPEATABLE_REA, TRANSACTION_SERIALIZABLE
+      transactionIsolation: TRANSACTION_READ_COMMITTED
+      # connectionが接続される時のtimeout out時間(ms)を設定します。
+      connectionTimeout: 30000
+      # connection Poolによって確保されたconnectionのmaximum idle time(ms)を決めます。
+      idleTimeout: 600000
+      # connection Poolによって確保されたconnectionの最大Life Time(ms)を決めます。
+      maxLifetime: 1800000
+
+  jooq:
+    sql-dialect: MySQL
+
+  # Thymeleafの設定
+  thymeleaf:
+    # テンプレートモードを設定
+    mode: HTML
+  resources:
+    chain:
+      # 静的ファイルのキャッシュ対応
+      # Thymeleafのタグで参照するURLをカスタム要素で記載していると
+      # 参照ファイル名がハッシュ値に置き換えられて毎度最新のファイルが取得される
+      #   css       th:href="@{パス}"
+      #   script    th:src="@{パス}"
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+  ######################################
+  # メッセージリソースの参照設定
+  messages:
+    # validationで参照するリソースファイルを「messages.properties」「form.yaml」に変更
+    basename: messages,form
+    # リソースをキャッシュしない
+    cacheSeconds: -1
+    # messagesファイルはUTF-8
+    encoding: UTF-8
+
+server:
+  servlet:
+    #  コンテキストパス
+    contextPath:
+    session:
+      # セッションタイムアウト（秒）例：60分=30*60=3200
+      # -1だと、セッション時間無制限
+      timeout: 3200
+      # サーバーデプロイ時の再起動前後でセッション維持をする場合、trueを設定
+      persistent: true
+      cookie:
+        # Cookie有効期限(秒)例：30日：60*60*24*30=2592000
+        maxAge: 2592000
+  # HTTPリクエストタイムアウト（ミリ秒）例：90秒=90*100=9000
+  connectionTimeout: 9000
+
+log4jdbc:
+  drivers: @db.driver.puer@
+

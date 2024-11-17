@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE logback>
+<configuration scan="true" scanPeriod="30 seconds">
+  <contextListener  class="ch.qos.logback.classic.jul.LevelChangePropagator">
+    <resetJUL>true</resetJUL>
+  </contextListener>
+
+  <property name="__LOG__HOME" value="@log.dir@" />
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <!-- ログ内の日付をSQL実行可能なフォーマットに変換する -->
+      <!-- 'MM/dd/yyyy' → 'yyyy/MM/dd' -->
+      <!-- 'HH:mm:ss.SSS' → 'HH:mm:ss' -->
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}- %replace(%replace(%msg){'(\d{2})/(\d{2})/(\d{4})' ,'$3/$1/$2'}){'(\d{2}):(\d{2}):(\d{2})\.(\d{3})', '$1:$2:$3'}%n</pattern>
+    </encoder>
+  </appender>
+  <appender name="FILE-AUDIT" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${__LOG__HOME}/application.log</file>
+    <encoder>
+      <!-- ログ内の日付をSQL実行可能なフォーマットに変換する -->
+      <!-- 'MM/dd/yyyy' → 'yyyy/MM/dd' -->
+      <!-- 'HH:mm:ss.SSS' → 'HH:mm:ss' -->
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}- %replace(%replace(%msg){'(\d{2})/(\d{2})/(\d{4})' ,'$3/$1/$2'}){'(\d{2}):(\d{2}):(\d{2})\.(\d{3})', '$1:$2:$3'}%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- rollover daily -->
+      <fileNamePattern>${__LOG__HOME}/application.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <maxFileSize>10MB</maxFileSize>
+      </timeBasedFileNamingAndTriggeringPolicy>
+    </rollingPolicy>
+
+  </appender>
+  <!-- log4jdbc -->
+  <logger name="jdbc.sqlonly" level="OFF" additivity="false" />
+  <logger name="jdbc.sqltiming" level="DEBUG" additivity="false" />
+  <logger name="jdbc.audit" level="OFF" />
+  <logger name="jdbc.resultset" level="OFF" />
+  <logger name="jdbc.resultsettable" level="OFF" />
+  <logger name="jdbc.connection" level="OFF" />
+
+  <root level="info">
+    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE-AUDIT"/>
+  </root>
+</configuration>
