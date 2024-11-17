@@ -12,21 +12,25 @@ import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-
+/**
+ * .
+ */
 @SpringBootApplication
-public class SpringWorkoutApplication extends SpringBootServletInitializer implements WebMvcConfigurer {
+public class SpringWorkoutApplication 
+    extends SpringBootServletInitializer implements WebMvcConfigurer {
 
   @Autowired
   private MessageSource messageSource;
 
   /**
-   * Cookie名の設定
+   * Cookie名の設定.
    */
-  private String COOKIE_NAME = "_sp_workout";
+  private String cookieName = "_sp_workout";
 
   /**
-    * SpringBoot主処理
-    * @param args
+    * SpringBoot主処理.
+
+    * @param args a
     */
   public static void main(String[] args) {
     SpringApplication.run(SpringWorkoutApplication.class, args);
@@ -60,11 +64,12 @@ public class SpringWorkoutApplication extends SpringBootServletInitializer imple
   }
 
   /**
-   * Cookie名の設定
-   * @return
+   * Cookie名の設定.
+
+   * @return a
    */
   @Bean
   public ServletContextInitializer servletContextInitializer() {
-    return servletContext -> servletContext.getSessionCookieConfig().setName(COOKIE_NAME);
+    return servletContext -> servletContext.getSessionCookieConfig().setName(cookieName);
   }
 }

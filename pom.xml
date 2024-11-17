@@ -23,7 +23,7 @@
     <jdbc.log4dbc.prefix>jdbc:log4</jdbc.log4dbc.prefix>
     <datasource.url>jdbc:mysql://localhost:3306/workout?useUnicode=true&amp;characterEncoding=utf8</datasource.url>
     <datasource.username>root</datasource.username>
-    <datasource.password>root</datasource.password>
+    <datasource.password>pass</datasource.password>
     <log.dir>./log</log.dir>
     <log.roll.history>5</log.roll.history>
   </properties>

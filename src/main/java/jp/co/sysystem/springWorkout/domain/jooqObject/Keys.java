@@ -11,6 +11,7 @@ import jp.co.sysystem.springWorkout.domain.jooqObject.tables.Userdetail;
 import jp.co.sysystem.springWorkout.domain.jooqObject.tables.records.UserRecord;
 import jp.co.sysystem.springWorkout.domain.jooqObject.tables.records.UserdetailRecord;
 
+import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.Internal;
 
@@ -33,6 +34,7 @@ public class Keys {
     // IDENTITY definitions
     // -------------------------------------------------------------------------
 
+    public static final Identity<UserdetailRecord, Integer> IDENTITY_USERDETAIL = Identities0.IDENTITY_USERDETAIL;
 
     // -------------------------------------------------------------------------
     // UNIQUE and PRIMARY KEY definitions
@@ -49,6 +51,10 @@ public class Keys {
     // -------------------------------------------------------------------------
     // [#1459] distribute members to avoid static initialisers > 64kb
     // -------------------------------------------------------------------------
+
+    private static class Identities0 {
+        public static Identity<UserdetailRecord, Integer> IDENTITY_USERDETAIL = Internal.createIdentity(Userdetail.USERDETAIL, Userdetail.USERDETAIL.NO);
+    }
 
     private static class UniqueKeys0 {
         public static final UniqueKey<UserRecord> KEY_USER_PRIMARY = Internal.createUniqueKey(User.USER, "KEY_user_PRIMARY", User.USER.ID);

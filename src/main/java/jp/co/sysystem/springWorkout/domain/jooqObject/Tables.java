@@ -24,12 +24,12 @@ import jp.co.sysystem.springWorkout.domain.jooqObject.tables.Userdetail;
 public class Tables {
 
     /**
-     * The table <code>workout.user</code>.
+     * ユーザーマスタ
      */
     public static final User USER = User.USER;
 
     /**
-     * The table <code>workout.userdetail</code>.
+     * ユーザーマスタ詳細
      */
     public static final Userdetail USERDETAIL = Userdetail.USERDETAIL;
 }

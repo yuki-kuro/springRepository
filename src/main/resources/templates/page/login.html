@@ -2,7 +2,7 @@
 <head>
 <!-- scripts import -->
 <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/4.4.1-1/webjars-requirejs.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.bundle.min.js}"></script>
 <!-- style import -->
 <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet" />
 <link th:href="@{/css/login.css}" rel="stylesheet" />
@@ -16,18 +16,26 @@
     <div class="alert alert-danger" role="alert" th:if="${msg != null}">
       <p th:text="${msg}">
     </div>
+    <div class="text-center" style="color:#bfaeac" >
+      <br><br>
+      <h1>社員情報管理</h1>
+    </div>
       <div class="card card-container">
         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-        <form action="#"th:action="@{/login}" th:object="${LoginForm}" method="post">
+        <form action="#"th:action="@{/login}" th:object="${loginForm}" method="post">
           <div class="text-center bg-white">
             <div class="spaceheight">
               <span>ユーザーID</span>
             </div>
-            <input type="text" th:field="*{id}" class="form-control" value="test" required autofocus>
+             <input type="text" th:field="*{id}" class="form-control" value="test" th:errorclass="is-invalid" required autofocus>
+            <!-- フィールドの入力チェックエラー表示 -->
+            <div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="invalid-feedback"></div>
             <div class="spaceheight">
               <span>パスワード</span>
             </div>
-            <input type="password" th:field="*{password}" class="form-control" value="test" required>
+             <input type="password" th:field="*{password}" class="form-control" value="test" th:errorclass="is-invalid" required>
+            <!-- フィールドの入力チェックエラー表示 -->
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="invalid-feedback"></div>
             <div class="pt10">
               <div class="push-btn">
                 <button id="loginButton" type="submit" class="btn btn-success">ログイン</button>
