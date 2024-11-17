@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -17,7 +16,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 
 /**
- * メッセージリソースから指定されたメッセージを取得する。<br>
+ * メッセージリソースから指定されたメッセージを取得する.<br>
  * メッセージおよび、フィールド名をリソースファイルへ定義する必要がある。
  * <ul>
  * <li>message.properties</li>
@@ -25,6 +24,7 @@ import org.springframework.validation.ObjectError;
  * <li>form.yaml</li>
  * 各formのフィールド名に対して名称を設定する
  * </ul>
+
  * @version 1.0.0 : 2020/05/13 新規作成
  */
 @Component
@@ -37,33 +37,36 @@ public class MessageUtil {
   private MessageSource messageSource;
 
   /**
-   * Bean validationが作成した文字列に
+   * Bean validationが作成した文字列に.
    * フィールド名を埋め込む
-   * @param err
-   * @return
+
+   * @param err a
+   * @return a
    */
   public String getMessage(ObjectError err) {
     return messageSource.getMessage(err, Locale.getDefault());
   }
 
   /**
-   * メッセージをリソースファイルから取得
-   * @param key
-   * @param fields
-   * @param args
-   * @return
+   * メッセージをリソースファイルから取得.
+
+   * @param key a
+   * @param fields a
+   * @param args a
+   * @return a
    */
   public String getMessage(String key, String[] fields, String[] args) {
     return getMessage(key, fields, args, null);
   }
 
   /**
-   * メッセージをリソースファイルから取得
-   * @param key
-   * @param fields
-   * @param args
-   * @param defaultMessage
-   * @return
+   * メッセージをリソースファイルから取得.
+
+   * @param key a
+   * @param fields a
+   * @param args a
+   * @param defaultMessage a
+   * @return a
    */
   public String getMessage(String key, String[] fields, String[] args, String defaultMessage) {
     Object[] msgArgs = null;
@@ -75,7 +78,7 @@ public class MessageUtil {
     }
 
     if (!ArrayUtils.isEmpty(args)) {
-      msgArgs = ArrayUtils.addAll(msgArgs, (Object [])args);
+      msgArgs = ArrayUtils.addAll(msgArgs, (Object []) args);
     }
     return messageSource.getMessage(
         key,
@@ -85,32 +88,36 @@ public class MessageUtil {
   }
 
   /**
-   * メッセージをリソースファイルから取得
-   * @param key
-   * @return
+   * メッセージをリソースファイルから取得.
+
+   * @param key a
+   * @return a
    */
   public String getMessage(String key) {
     return getMessage(key, null, null, null);
   }
 
   /**
-   * メッセージをリソースファイルから取得
-   * @param key
-   * @param defaultMessage
-   * @return
+   * メッセージをリソースファイルから取得.
+
+   * @param key a
+   * @param defaultMessage a
+   * @return a
    */
   public String getMessage(String key, String defaultMessage) {
     return getMessage(key, null, null, defaultMessage);
   }
 
   /**
-   * Bean validationが作成した文字列で
+   * Bean validationが作成した文字列で.
    * フィールド名を埋め込む
+
    * @param map 既存のerrorMessages
    * @param err (ErrorsまたはBindingResult)
-   * @return
+   * @return a
    */
-  public HashMap<String, List<String>> interpolateMessages(HashMap<String, List<String>> map, Errors err) {
+  public HashMap<String, List<String>> 
+      interpolateMessages(HashMap<String, List<String>> map, Errors err) {
     if (err.hasErrors()) {
       for (FieldError e : err.getFieldErrors()) {
         // フィールドにエラーが未設定の場合はListを初期化
@@ -124,10 +131,11 @@ public class MessageUtil {
   }
 
   /**
-   * Bean validationが作成した文字列で
+   * Bean validationが作成した文字列で.
    * フィールド名を埋め込む
+
    * @param err (ErrorsまたはBindingResult)
-   * @return
+   * @return a
    */
   public HashMap<String, List<String>> interpolateMessages(Errors err) {
     HashMap<String, List<String>> map = new HashMap<String, List<String>>();
@@ -135,7 +143,8 @@ public class MessageUtil {
   }
 
   /**
-   * BindingResultへエラーメッセージを設定
+   * BindingResultへエラーメッセージを設定.
+
    * @param br BindingResultインスタンス
    * @param elementId htmlの要素ID
    * @param messageId messages.propertiesに定義しているメッセージのID
@@ -147,7 +156,8 @@ public class MessageUtil {
   }
 
   /**
-   * BindingResultへエラーメッセージを設定
+   * BindingResultへエラーメッセージを設定.
+
    * @param br BindingResultインスタンス
    * @param elementId htmlの要素ID
    * @param messageId messages.propertiesに定義しているメッセージのID

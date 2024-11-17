@@ -31,7 +31,7 @@ import org.jooq.impl.SchemaImpl;
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Workout extends SchemaImpl {
 
-    private static final long serialVersionUID = 1957887557;
+    private static final long serialVersionUID = -1846334689;
 
     /**
      * The reference instance of <code>workout</code>
@@ -39,12 +39,12 @@ public class Workout extends SchemaImpl {
     public static final Workout WORKOUT = new Workout();
 
     /**
-     * The table <code>workout.user</code>.
+     * ユーザーマスタ
      */
     public final User USER = jp.co.sysystem.springWorkout.domain.jooqObject.tables.User.USER;
 
     /**
-     * The table <code>workout.userdetail</code>.
+     * ユーザーマスタ詳細
      */
     public final Userdetail USERDETAIL = jp.co.sysystem.springWorkout.domain.jooqObject.tables.Userdetail.USERDETAIL;
 
